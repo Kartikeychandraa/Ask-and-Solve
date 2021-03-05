@@ -1,10 +1,11 @@
  <!doctype html>
  <!-- 
-#B2D732 yellow green
+#b2d237 yellow green
 #333333 Black
 #595959 faded black
     font-family: proxima_novalight;
     color: #2f2f35;
+    https://www.spinxdigital.com/ ideas
 -->
 <html lang="en">
   <head>
@@ -16,6 +17,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <title>ASK & SOLVE</title>
       <style type="text/css">
+html {
+  scroll-behavior: smooth;
+}
+
     	body{
     		background-color: white;
             	}
@@ -32,17 +37,44 @@ ul {
   color:white;
   }
   #link:hover{
-  color: #B2D732;
+  color: #b2d237;
   background-color: #595959;
   transition: 1s;
   }
+  .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #f2f2f2;
+}
+.centered:hover{
+transition:1s;
+color: #b2d237;
+}
 
 
     </style>
-  
+  <script>
+  function loader(){
+  document.getElementById("main").style.display = "block";
+   document.getElementById("load").style.display = "none";
+  }
+  </script>
   </head>
 
-  <body>
+  <body onload="loader()">
+  <div id="load">
+<div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+  </div>
+
+  
+  <div id="main" style="display:none;">
+  <div class="container-fluid" style="background-color: #333333;">
    <nav class="sticky-top" style="background-color: #333333;"> 
     <div class="container">
     <ul class="nav justify-content-center ">
@@ -59,23 +91,20 @@ ul {
     <a class="nav-link" style="font-size:20px;  font-style: oblique;" href="/contact" id="link">ContactUs</a>
   </li>
 </ul>
-<hr>
 </div>
    </nav>
 <!-- -------------------------------------------tagline -->
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 align-self-center">
-    <center> <i> <h1>There's a better way to explore.</h1>
-      <h5>Lets Get Started</h5></i></center>
-    </div>
-    <div class="col-md-8">
-      <img src="tagline.jpg" class="img-fluid" >
-    </div>
-  </div>
-  </div>
+  <img src="tagline.jpg" alt="Snow" style="width:100%;height:100%;filter: brightness(50%);background-size: cover;">
+  <div class="centered"><h1><i> There's a better way to explore.
+      </i></h1> <h5><i>Lets Get Started</i></h5> </div>
+</div>
+
+
+
+ 
 
 <!-- -------------------------------------------------------------------cards section -->
+<br>
 <div class="container">
     <div class="row">
   <div class="col-sm-6">
@@ -147,8 +176,7 @@ ul {
   </div>
 
     </div>
-
-
+</div>
 
 
 
