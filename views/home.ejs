@@ -74,10 +74,9 @@ background-color: #333333;
 
   <body onload="loader()">
   <div id="load">
-<div class="d-flex justify-content-center">
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
+  <div class="spinner-border text-success" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
 </div>
   </div>
 
@@ -91,13 +90,13 @@ background-color: #333333;
     <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/" id="link">Home</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" style="font-size:20px;  font-style: oblique;" href="/login" id="link">Login</a>
+    <a class="nav-link" style="font-size:20px;  font-style: oblique;" href="#" id="link" data-bs-toggle="modal" data-bs-target="#login">Login</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" style="font-size:20px;  font-style: oblique;" href="/signup" id="link">Signup</a>
+    <a class="nav-link" style="font-size:20px;  font-style: oblique;" href="#" id="link"  data-bs-toggle="modal" data-bs-target="#signup">Signup</a>
   </li>
    <li class="nav-item">
-    <a class="nav-link" style="font-size:20px;  font-style: oblique;" href="/contact" id="link">ContactUs</a>
+    <a class="nav-link" style="font-size:20px;  font-style: oblique;" href="#contact" id="link">ContactUs</a>
   </li>
 </ul>
 </div>
@@ -229,6 +228,61 @@ background-color: #333333;
 </center>
 </div>
 </div>
+
+
+
+  <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content" >
+      <div class="modal-header" style="background-color: #333333;">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Login</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="background-color: #333333;">
+      <form>
+        <input type="text" class="form-control" placeholder="Email" style="background-color: #333333;color:#b2d237" >
+        <br>
+        <input type = "password" class="form-control" placeholder="password" style="background-color: #333333; color: #b2d237">
+      </div>
+      <div class="modal-footer" style="background-color: #333333;">
+        <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #b2d237;color: #333333"> Close </button>
+        <input type="submit" class ="btn"  style="background-color: #b2d237 ;color: #333333" value=" SUBMIT ">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+   <div class="modal fade" id="signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content" >
+      <div class="modal-header" style="background-color: #333333;">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Signup</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="background-color: #333333;">
+      <form>
+        
+        <input type="text" class="form-control" placeholder="Name" style="background-color: #333333;color:#b2d237" Required>
+        <br>
+        <input type="text" class="form-control" placeholder="Email" style="background-color: #333333;color:#b2d237"  Required>
+        <br>
+        <input type = "password" class="form-control" placeholder="password" style="background-color: #333333; color: #b2d237" Required>
+      </div>
+      <div class="modal-footer" style="background-color: #333333;">
+        <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #b2d237;color: #333333"> Close </button>
+        <input type="submit" class ="btn"  style="background-color: #b2d237 ;color: #333333" value=" SIGNUP ">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
 
 </div>
 
