@@ -262,10 +262,10 @@ position: absolute;
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" style="background-color: #333333;">
-      <form>
-        <input type="text" class="form-control" placeholder="Email" style="background-color: #333333;color:#b2d237" >
+      <form action="/login" method="POST">
+        <input type="text" class="form-control" name="email" placeholder="Email" style="background-color: #333333;color:#b2d237" >
         <br>
-        <input type = "password" class="form-control" placeholder="password" style="background-color: #333333; color: #b2d237">
+        <input type = "password" class="form-control" name="password" placeholder="password" style="background-color: #333333; color: #b2d237">
       </div>
       <div class="modal-footer" style="background-color: #333333;">
         <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #b2d237;color: #333333"> Close </button>
@@ -284,13 +284,13 @@ position: absolute;
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" style="background-color: #333333;">
-      <form>
+      <form action="/signup" method="POST">
         
-        <input type="text" class="form-control" placeholder="Name" style="background-color: #333333;color:#b2d237" Required>
+        <input type="text" class="form-control" placeholder="Name" style="background-color: #333333;color:#b2d237" name="name" Required>
         <br>
-        <input type="text" class="form-control" placeholder="Email" style="background-color: #333333;color:#b2d237"  Required>
+        <input type="text" class="form-control" name="username" placeholder="Email" style="background-color: #333333;color:#b2d237"  Required>
         <br>
-        <input type = "password" class="form-control" placeholder="password" style="background-color: #333333; color: #b2d237" Required>
+        <input type = "password" class="form-control" placeholder="password" style="background-color: #333333; color: #b2d237" name="SignupPassword" Required>
       </div>
       <div class="modal-footer" style="background-color: #333333;">
         <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #b2d237;color: #333333"> Close </button>
