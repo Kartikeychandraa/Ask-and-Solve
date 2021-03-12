@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
 const methodoverride=require("method-override");
+const flash = require('express-flash');
 
 // ---------------models--------
 const UserModel = require("./model/user");
@@ -21,6 +22,7 @@ mongoose.connect(
 );
 
 var app = express();
+app.use(flash());
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(express.static("public"));
@@ -64,14 +66,14 @@ const checkFun = async(email, password, done) =>{
   UserModel.findOne({ "email": email },(err, data) => {
         if (err) throw err;
         if (!data) {
-            return done(null, false);
+            return done(null, false,{ messages: 'No user with that email' });
         }
            bcrypt.compare(password, data.password, (err, match) => {
             if (err) {
                 return done(null, false);
             }
             if (!match) {
-                return done(null, false);
+                return done(null, false,{ messages: 'Password Incorrect'});
             }
             if (match) {
                 return done(null, data);
@@ -161,10 +163,26 @@ req.logout();
 res.render("/");
 });
 // ------------------------------complete-auth-end
-
+//--------------------------------project start-----
 app.get('/index',(req,res)=>{
 	res.render("index");
 })
+app.post('/AddQuestion',async(req,res)=>{
+const question = new QuestionModel({
+title : req.body.title,
+description : req.body.description,
+problem : req.body.problem,
+userid : req.user._id,
+})
+ try {
+       await question.save();
+       res.send(question);
+     } catch (err) {
+       res.status(500).send(err);
+     }
+      
+})
+
 
 
 app.get("/output", async (req, res) => {

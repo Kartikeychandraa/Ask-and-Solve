@@ -110,7 +110,7 @@ position: absolute;
     <div class="container">
     <ul class="nav justify-content-center ">
   <li class="nav-item">
-    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="#post_question" id="link">Post Question</a>
+    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="#" id="link" data-bs-toggle="modal" data-bs-target="#post">Post Question</a>
   </li>
    <li class="nav-item">
     <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="#" id="link">My Questions</a>
@@ -122,6 +122,32 @@ position: absolute;
 </div>
    </nav>
 
+<div class="modal fade" id="post" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content" >
+      <div class="modal-header" style="background-color: #333333;">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Post Your Question</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="background-color: #333333;">
+      <form action="/AddQuestion" method="POST">
+        
+        <input type="text" class="form-control" placeholder="Title" style="background-color: #333333;color:#b2d237" name="title" Required>
+        <br>
+        <input type="text" class="form-control" name="description" placeholder="Description" style="background-color: #333333;color:#b2d237"  Required>
+        <br>
+        <textarea class="form-control" name="problem" rows="10" style="background-color: #333333; color: #b2d237" placeholder="Problem" Required></textarea>
+        
+      </div>
+      <div class="modal-footer" style="background-color: #333333;">
+        <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #b2d237;color: #333333"> Close </button>
+        <input type="submit" class ="btn"  style="background-color: #b2d237 ;color: #333333" value=" Post ">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 
 </div>
