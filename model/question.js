@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
   userid: {
     type: String,
     required: true
-  }
+  },
 });
 
 

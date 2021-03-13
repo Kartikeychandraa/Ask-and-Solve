@@ -138,7 +138,7 @@ res.send('already  a user');
   }
 });
 });
- app.post("/register",checkNotAuthenticated, async (req, res,next) => {
+ app.post("/signup",checkNotAuthenticated, async (req, res,next) => {
   console.log("posting register");
    var a = req.body.name;
    var c = req.body.username;
@@ -164,9 +164,18 @@ res.render("/");
 });
 // ------------------------------complete-auth-end
 //--------------------------------project start-----
-app.get('/index',(req,res)=>{
-	res.render("index");
+app.get('/index',async (req,res)=>{
+ await QuestionModel.find({},(err,data)=>{
+if(err){
+res.send(err);
+}
+else{
+  res.render("index",{data})
+}
+
+  });
 })
+
 app.post('/AddQuestion',async(req,res)=>{
 const question = new QuestionModel({
 title : req.body.title,
@@ -180,13 +189,35 @@ userid : req.user._id,
      } catch (err) {
        res.status(500).send(err);
      }
-      
+});
+
+app.get('/myquestion',(req,res)=>{
+   const id = req.user.id;
+   console.log(id);
+  var promise = new Promise(function(resolve, reject) { 
+QuestionModel.find({userid : id},(err,data)=>{
+if(err){
+  console.log(err);
+}
+else{
+  resolve();
+}
+
+  });
+}); 
+
+promise.then(function () {  
+		res.render("myquestion",{data})
+	}).catch(function () { 
+	console.log("error retriving data");
+	}); 
+
 })
 
 
 
 app.get("/output", async (req, res) => {
-  const data = await UserModel.find({});
+  const data = await QuestionModel.find({});
   try {
     res.send(data);
   } catch (err) {
@@ -195,5 +226,10 @@ app.get("/output", async (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000,()=>{
+  var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
 	console.log("Server Running at 3000");
+  console.log("Server started at UTC " + date+ " "+ time);
 });
