@@ -130,23 +130,24 @@ position: absolute;
 </div>
 <br>
 <div class="container">
+
+
 <h4><i style="color:#333333">Your Questions are Listed here </i></h4>
 <br>
-<% for(var i=0;i<data.length;i++) { %>
 <div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
   <div class="card-body">
-    <h5 class="card-title"><%= data[i].title %></h5>
+    <h5 class="card-title"></h5>
   
-    <h6 class="card-subtitle mb-2" style="color:#b2d237;"> <%= data[i].description%></h6>
+    <h6 class="card-subtitle mb-2" style="color:#b2d237;"></h6>
     <br>
-    <p class="card-text"><%= data[i].problem%></p>
+    <p class="card-text"></p>
   </div>
    <div class="card-footer text-end" style="border-top: 1px solid white">
     <form><input type="submit" class="btn" style="background-color: #b2d237;" value="VIEW" ></form>
   </div>
   </div>
   <br>
-<% } %>
+<%  %>
 
 
 </div>

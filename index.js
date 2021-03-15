@@ -53,12 +53,12 @@ function checkAuthenticated(req, res, next) {
     return next()
   }
 
-  res.redirect('/login')
+  res.redirect('/')
 }
 
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect('/indexmain')
+    return res.redirect('/index')
   }
   next()
 }
@@ -160,17 +160,18 @@ res.send('already  a user');
 app.delete("/logout",(req,res)=>
 {
 req.logout();
-res.render("/");
+res.redirect("/");
 });
 // ------------------------------complete-auth-end
 //--------------------------------project start-----
-app.get('/index',async (req,res)=>{
+app.get('/index',checkAuthenticated,async (req,res)=>{
  await QuestionModel.find({},(err,data)=>{
 if(err){
 res.send(err);
 }
 else{
-  res.render("index",{data})
+  var user=req.user.name;
+  res.render("index",{data,user})
 }
 
   });
@@ -191,29 +192,25 @@ userid : req.user._id,
      }
 });
 
-app.get('/myquestion',(req,res)=>{
+app.get('/myquestion',checkAuthenticated,(req,res)=>{
    const id = req.user.id;
-   console.log(id);
-  var promise = new Promise(function(resolve, reject) { 
-QuestionModel.find({userid : id},(err,data)=>{
-if(err){
-  console.log(err);
-}
-else{
-  resolve();
-}
-
-  });
-}); 
-
-promise.then(function () {  
-		res.render("myquestion",{data})
-	}).catch(function () { 
-	console.log("error retriving data");
-	}); 
-
+     if (id.match(/^[0-9a-fA-F]{24}$/)) {
+       console.log(id + " is retrieving data");
+  QuestionModel.find({userid : id},(err,data)=>{
+  if (err)
+   {console.log('error occured in my questions');}
+ else{
+res.render("myquestion",{data})
+ }
 })
-
+     }
+})
+app.get('/answer',(req,res)=>{
+  res.render('answer');
+})
+app.get('/profile',(req,res)=>{
+  res.render('profile');
+})
 
 
 app.get("/output", async (req, res) => {
@@ -230,6 +227,5 @@ app.listen(process.env.PORT || 3000,()=>{
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
-	console.log("Server Running at 3000");
-  console.log("Server started at UTC " + date+ " "+ time);
+  console.log("Server started on 3000 at UTC " + date+ " "+ time);
 });

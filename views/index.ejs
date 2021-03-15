@@ -80,6 +80,9 @@ position: absolute;
    <nav class="sticky-top" style="background-color: #333333;"> 
     <div class="container">
     <ul class="nav justify-content-center ">
+    <li class="nav-item">
+    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/index" id="link" >View Questions</a>
+  </li>
   <li class="nav-item">
     <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="#" id="link" data-bs-toggle="modal" data-bs-target="#post">Post Question</a>
   </li>
@@ -88,6 +91,13 @@ position: absolute;
   </li>
    <li class="nav-item">
     <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="#" id="link">Live Chat</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/profile" id="link">My Profile</a>
+  </li>
+    </li>
+   <li class="nav-item">
+    <form action="/logout?_method=DELETE" method="POST"><button class="nav-link" id="link" style="font-size:20px;  font-style: oblique;background: transparent;border: 0;">Logout</button></form>
   </li>
 </ul>
 </div>
@@ -121,7 +131,7 @@ position: absolute;
 </div>
 <br>
 <div class="container">
-<h3><i style="color:#333333">Welcome Mr. </i></h3>
+<h3><i style="color:#333333">Welcome Mr. <%=user%></i></h3>
 <br>
 <% for(var i=0;i<data.length;i++) { %>
 <div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">

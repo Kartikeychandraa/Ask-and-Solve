@@ -92,9 +92,6 @@ position: absolute;
    <li class="nav-item">
     <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="#" id="link">Live Chat</a>
   </li>
-   <li class="nav-item">
-    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/profile" id="link">My Profile</a>
-  </li>
   <li class="nav-item">
     <form action="/logout?_method=DELETE" method="POST"><button class="nav-link" id="link" style="font-size:20px;  font-style: oblique;background: transparent;border: 0;">Logout</button></form>
   </li>
@@ -132,22 +129,6 @@ position: absolute;
 <div class="container">
 <h4><i style="color:#333333">Your Questions are Listed here </i></h4>
 <br>
-<% for(var i=0;i<data.length;i++) { %>
-<div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
-  <div class="card-body">
-    <h5 class="card-title"><%= data[i].title %></h5>
-  
-    <h6 class="card-subtitle mb-2" style="color:#b2d237;"> <%= data[i].description%></h6>
-    <br>
-    <p class="card-text"><%= data[i].problem%></p>
-  </div>
-   <div class="card-footer text-end" style="border-top: 1px solid white">
-    <form><input type="submit" class="btn" style="background-color: #b2d237;" value="VIEW" ></form>
-  </div>
-  </div>
-  <br>
-<% } %>
-
 
 </div>
 
