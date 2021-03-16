@@ -208,8 +208,10 @@ res.render("myquestion",{data})
 app.get('/answer',(req,res)=>{
   res.render('answer');
 })
-app.get('/profile',(req,res)=>{
-  res.render('profile');
+
+app.get('/profile',checkAuthenticated,async(req,res)=>{
+const data = await req.user;
+  res.render('profile',{data});
 })
 
 
