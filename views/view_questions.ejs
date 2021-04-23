@@ -130,29 +130,57 @@ position: absolute;
 </div>
 <br>
 <div class="container">
-<h4><i style="color:#333333">Your Questions are Listed here </i></h4>
+<h4><i style="color:#333333">Help Over here</i></h4>
 <br>
-<% for(var i=0;i<data.length;i++) { %>
 <div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
   <div class="card-body">
-    <h5 class="card-title"><%= data[i].title %></h5>
+    <h5 class="card-title">j</h5>
   
-    <h6 class="card-subtitle mb-2" style="color:#b2d237;"> <%= data[i].description%></h6>
+    <h6 class="card-subtitle mb-2" style="color:#b2d237;"> k</h6>
     <br>
-    <p class="card-text"><%= data[i].problem%></p>
+    <p class="card-text">l</p>
   </div>
    <div class="card-footer text-end" style="border-top: 1px solid white">
-    <form><input type="submit" class="btn" style="background-color: #b2d237;" value="VIEW" ></form>
-    <br>
-    <form method="POST" action="/delete_questions/<%= data[i]._id%>"><input type="submit" class="btn" style="background-color: #b2d237;" value="DELETE" ></form>
   </div>
   </div>
   <br>
-<% } %>
+  <!-----------------------------------ANSWER VIEW -->
+<div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
+  <div class="card-body">
+    <h5 class="card-title">j</h5>
+  
+    <h6 class="card-subtitle mb-2" style="color:#b2d237;"> k</h6>
+    <br>
+    <p class="card-text">l</p>
+  </div>
+   <div class="card-footer text-end" style="border-top: 1px solid white">
+  </div>
+  </div>
+  <br>
+
+
+<br>
+<!------------------------------answer POST -->
+<h4><i> Have an answer , Lets help him/her </i></h4>
+<br>
+<div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
+<form>
+  <div class="card-body">
+    <h5 class="card-title"> <input type="text" class="form-control" placeholder="Title" style="background-color: #333333;color:#b2d237" name="title" Required>
+        </h5>
+   <p class="card-text"> <textarea class="form-control" name="problem" rows="10" style="background-color: #333333; color: #b2d237" placeholder="Descibe Your Answer" Required></textarea>
+        
+        </p>
+  </div>
+   <div class="card-footer text-end" style="border-top: 1px solid white">
+    <input type="submit" class ="btn"  style="background-color: #b2d237 ;color: #333333" value=" Post ">
+  </div>
+  </form>
+  </div>
+  <br>
 
 
 </div>
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>

@@ -205,8 +205,25 @@ res.render("myquestion",{data})
 })
      }
 })
+// ---------------------------------delete customer question
+app.post('/delete_questions/:id',(req,res)=>{
+ var id = req.params.id;
+  if (id.match(/^[0-9a-fA-F]{24}$/)) {
+    QuestionModel.findByIdAndDelete({_id : id},(err,data)=>{
+      if (err)
+        {res.send(err);}
+      else{
+        res.redirect("/myquestion");
+      }
+    })
+
+  }
+  else{console.log("id is not valid");}
+
+})
+// -------------view and answer questions
 app.get('/answer',(req,res)=>{
-  res.render('answer');
+  res.render('view_questions');
 })
 
 app.get('/profile',checkAuthenticated,async(req,res)=>{
@@ -216,7 +233,7 @@ const data = await req.user;
 
 
 app.get("/output", async (req, res) => {
-  const data = await QuestionModel.find({});
+  const data = await AnswerModel.find({});
   try {
     res.send(data);
   } catch (err) {

@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-  answer: {
+  description: {
+    type: String,
+    required: true,
+  },
+  solution: {
     type: String,
     required: true,
   },
