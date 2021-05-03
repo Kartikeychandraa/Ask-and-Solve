@@ -222,10 +222,42 @@ app.post('/delete_questions/:id',(req,res)=>{
 
 })
 // -------------view and answer questions
-app.get('/answer',(req,res)=>{
-  res.render('view_questions');
+var temp =[];
+var question_id;
+
+app.get('/answer/:id',async(req,res,next)=>{
+var id = req.params.id;
+question_id = id;
+temp = [];
+  if (id.match(/^[0-9a-fA-F]{24}$/)) {
+  await QuestionModel.findById({_id : id},(err,data)=>{
+      if (err)
+        {res.send(err);}
+      else{
+       
+       temp.push(data);
+     next();
+      }
+    })
+  }
+  else{console.log("id is not valid");}
+})
+app.get("/answer/:id",async(req,res,next)=>{
+  await AnswerModel.find({questionid : question_id},(err,data)=>{
+     if (err)
+        {res.send(err);}
+      else{
+       
+       temp.push(data);
+   
+      }
+  })
+  console.log(temp);
+  console.log(question_id);
+  res.render("answer",{temp});
 })
 
+// -------------------------------------
 app.get('/profile',checkAuthenticated,async(req,res)=>{
 const data = await req.user;
   res.render('profile',{data});

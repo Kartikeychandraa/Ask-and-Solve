@@ -134,20 +134,22 @@ position: absolute;
 
 <h4><i style="color:#333333">Answers </i></h4>
 <br>
+
+<%for(var i =0 ; i < temp.length; i++) {%>
 <div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
   <div class="card-body">
-    <h5 class="card-title"></h5>
+    <h5 class="card-title"><%= temp.title%></h5>
   
-    <h6 class="card-subtitle mb-2" style="color:#b2d237;"></h6>
+    <h6 class="card-subtitle mb-2" style="color:#b2d237;"><%= temp.description%></h6>
     <br>
-    <p class="card-text"></p>
+    <p class="card-text"><%= temp.problem%></p>
   </div>
    <div class="card-footer text-end" style="border-top: 1px solid white">
     <form><input type="submit" class="btn" style="background-color: #b2d237;" value="VIEW" ></form>
   </div>
   </div>
   <br>
-
+<% } %>
   <div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
   <div class="card-body">
     <h5 class="card-title">Add Your Answer</h5>
