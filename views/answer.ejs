@@ -134,18 +134,28 @@ position: absolute;
 
 <h4><i style="color:#333333">Answers </i></h4>
 <br>
-
-<%for(var i =0 ; i < temp.length; i++) {%>
 <div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
   <div class="card-body">
-    <h5 class="card-title"><%= temp.title%></h5>
+    <h5 class="card-title"><%= temp[0].title%></h5>
   
-    <h6 class="card-subtitle mb-2" style="color:#b2d237;"><%= temp.description%></h6>
+    <h6 class="card-subtitle mb-2" style="color:#b2d237;"><%= temp[0].description%></h6>
     <br>
-    <p class="card-text"><%= temp.problem%></p>
+    <p class="card-text"><%= temp[0].problem%></p>
   </div>
    <div class="card-footer text-end" style="border-top: 1px solid white">
-    <form><input type="submit" class="btn" style="background-color: #b2d237;" value="VIEW" ></form>
+  </div>
+  </div>
+  <br>
+<%for(var i =1; i < temp.length-1; i++) {%>
+<div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
+  <div class="card-body">
+    <h5 class="card-title"><%= temp[i].description%></h5>
+  
+    <h6 class="card-subtitle mb-2" style="color:#b2d237;"><%= temp[i].verified%></h6>
+    <br>
+    <p class="card-text"><%= temp[i].solution%></p>
+  </div>
+   <div class="card-footer text-end" style="border-top: 1px solid white">
   </div>
   </div>
   <br>
@@ -157,15 +167,17 @@ position: absolute;
     <h6 class="card-subtitle mb-2" style="color:#b2d237;"></h6>
     <br>
     <p class="card-text">
-   
+   <form method="POST" action="/post_answer">
         <input type="text" class="form-control" name="description" placeholder="Description" style="background-color: #333333;color:#b2d237"  Required>
         <br>
         <textarea class="form-control" name="solution" rows="10" style="background-color: #333333; color: #b2d237" placeholder="Solution" Required></textarea>
         
       </div>
       <div class="modal-footer" style="background-color: #333333;">
-        <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #b2d237;color: #333333"> Close </button>
+      <!------------------------answer posting ----->
+       
         <input type="submit" class ="btn"  style="background-color: #b2d237 ;color: #333333" value=" Post ">
+        </form>
     </p>
   </div>
   </div>

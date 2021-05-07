@@ -9,9 +9,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  votes: {
-    type: Number,
-  },
   verified: {
     type: Boolean,
   },

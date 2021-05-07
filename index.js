@@ -15,9 +15,8 @@ const QuestionModel = require("./model/question");
 const AnswerModel = require("./model/answer");
 
 require('dotenv').config();
-
 mongoose.connect(
-  process.env.mongodb,
+  "mongodb+srv://kartikeychandra0512:@cluster0-xwnrl.mongodb.net/test?retryWrites=true&w=majority",
   { useUnifiedTopology: true, useNewUrlParser: true }
 );
 
@@ -257,6 +256,25 @@ app.get("/answer/:id",async(req,res,next)=>{
   res.render("answer",{temp});
 })
 
+// --------------------------------------answer posting 
+app.post("/post_answer",async(req,res)=>{
+ const answer  = new AnswerModel({
+     description: req.body.description,
+     solution: req.body.solution,
+     verified: 0,
+     userid: req.user._id,
+     questionid : question_id,
+   });
+     try {
+       await answer.save();
+       res.send(answer);
+     } catch (err) {
+       res.status(500).send(err);
+     }
+})
+
+
+
 // -------------------------------------
 app.get('/profile',checkAuthenticated,async(req,res)=>{
 const data = await req.user;
@@ -264,7 +282,25 @@ const data = await req.user;
 })
 
 
+// -------------------------------------------testing routes
 app.get("/output", async (req, res) => {
+  const data = await UserModel.find({});
+  try {
+    res.send(data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+app.get("/question_output", async (req, res) => {
+  const data = await QuestionModel.find({});
+  try {
+    res.send(data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+app.get("/answer_output", async (req, res) => {
   const data = await AnswerModel.find({});
   try {
     res.send(data);
@@ -272,6 +308,7 @@ app.get("/output", async (req, res) => {
     res.status(500).send(err);
   }
 });
+
 
 app.listen(process.env.PORT || 3000,()=>{
   var today = new Date();
