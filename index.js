@@ -13,10 +13,10 @@ const flash = require('express-flash');
 const UserModel = require("./model/user");
 const QuestionModel = require("./model/question");
 const AnswerModel = require("./model/answer");
-
+const FeedbackModel = require("./model/feedback");
 require('dotenv').config();
 mongoose.connect(
-  "mongodb+srv://kartikeychandra0512:@cluster0-xwnrl.mongodb.net/test?retryWrites=true&w=majority",
+  "",
   { useUnifiedTopology: true, useNewUrlParser: true }
 );
 
@@ -247,7 +247,7 @@ app.get("/answer/:id",async(req,res,next)=>{
         {res.send(err);}
       else{
        
-       temp.push(data);
+       temp= temp.concat(data);
    
       }
   })
@@ -273,16 +273,36 @@ app.post("/post_answer",async(req,res)=>{
      }
 })
 
+//-------------------------feedback -----------
+app.post('/feedback',async(req,res)=>{
+const feed = new FeedbackModel({
+name: req.body.first_name + " " + req.body.last_name,
+ email : req.body.email,
+ subject : "NULL",
+ company : "NULL",
+ message : req.body.message,
+});
+try {
+  await feed.save();
+  res.redirect('/');
+}
+catch(err){
+  res.status(500).send(err);
+}
 
+})
 
 // -------------------------------------
 app.get('/profile',checkAuthenticated,async(req,res)=>{
 const data = await req.user;
   res.render('profile',{data});
 })
+//---------------------admin side --------
+app.get('/admin',(req,res)=>{
+  res.render('admin');
+})
 
-
-// -------------------------------------------testing routes
+//------------------------------------------testing routes
 app.get("/output", async (req, res) => {
   const data = await UserModel.find({});
   try {

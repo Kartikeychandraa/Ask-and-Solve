@@ -80,20 +80,17 @@ position: absolute;
    <nav class="sticky-top" style="background-color: #333333;"> 
     <div class="container">
     <ul class="nav justify-content-center ">
-     <li class="nav-item">
-    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/index" id="link" >View Questions</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="#" id="link" data-bs-toggle="modal" data-bs-target="#post">Post Question</a>
+    <li class="nav-item">
+    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/admin" id="link" >View Questions</a>
   </li>
    <li class="nav-item">
-    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/myquestion" id="link">My Questions</a>
+    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/feedback" id="link">Feedback</a>
   </li>
-   
    <li class="nav-item">
     <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/profile" id="link">My Profile</a>
   </li>
-  <li class="nav-item">
+    </li>
+   <li class="nav-item">
     <form action="/logout?_method=DELETE" method="POST"><button class="nav-link" id="link" style="font-size:20px;  font-style: oblique;background: transparent;border: 0;">Logout</button></form>
   </li>
 </ul>
@@ -128,64 +125,23 @@ position: absolute;
 </div>
 <br>
 <div class="container">
-
-
-<h4><i style="color:#333333">Answers </i></h4>
+<h3><i style="color:#333333">Welcome ADMIN</i></h3>
 <br>
+<h5><i style="color:#333333">Everything Under Control</i></h5>
 <div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
   <div class="card-body">
-    <h5 class="card-title"><%= temp[0].title%></h5>
-  
-    <h6 class="card-subtitle mb-2" style="color:#b2d237;"><%= temp[0].description%></h6>
-    <br>
-    <p class="card-text"><%= temp[0].problem%></p>
-  </div>
-   <div class="card-footer text-end" style="border-top: 1px solid white">
-  </div>
-  </div>
-  <br>
-<%for(var i =1; i < temp.length; i++) {%>
-<div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
-  <div class="card-body">
-    <h5 class="card-title"><%= temp[i].description%></h5>
-  
-    <h6 class="card-subtitle mb-2" style="color:#b2d237;"><%= temp[i].verified%></h6>
-    <br>
-    <p class="card-text"><%= temp[i].solution%></p>
-  </div>
-   <div class="card-footer text-end" style="border-top: 1px solid white">
-  </div>
-  </div>
-  <br>
-<% } %>
-  <div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
-  <div class="card-body">
-    <h5 class="card-title">Add Your Answer</h5>
+    <h5 class="card-title"></h5>
   
     <h6 class="card-subtitle mb-2" style="color:#b2d237;"></h6>
     <br>
-    <p class="card-text">
-   <form method="POST" action="/post_answer">
-        <input type="text" class="form-control" name="description" placeholder="Description" style="background-color: #333333;color:#b2d237"  Required>
-        <br>
-        <textarea class="form-control" name="solution" rows="10" style="background-color: #333333; color: #b2d237" placeholder="Solution" Required></textarea>
-        
-      </div>
-      <div class="modal-footer" style="background-color: #333333;">
-      <!------------------------answer posting ----->
-       
-        <input type="submit" class ="btn"  style="background-color: #b2d237 ;color: #333333" value=" Post ">
-        </form>
-    </p>
+    <p class="card-text"></p>
+  </div>
+   <div class="card-footer text-end" style="border-top: 1px solid white">
+    <form method="GET" action="/answer/"><input type="submit" class="btn" style="background-color: #b2d237;" value="VIEW" ></form>
   </div>
   </div>
   <br>
-
-
-
 </div>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
