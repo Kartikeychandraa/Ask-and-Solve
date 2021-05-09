@@ -112,7 +112,7 @@ promise.
     then( ()=>{ 
        passport.authenticate('local', {
         failureRedirect: '/',
-        successRedirect: '/admin',
+        successRedirect: '/admin-question',
     })(req, res, next);
     })
     .catch(()=> { 
@@ -205,7 +205,7 @@ res.render("myquestion",{data})
      }
 })
 // ---------------------------------delete customer question
-app.post('/delete_questions/:id',(req,res)=>{
+app.post('/delete_question/:id',(req,res)=>{
  var id = req.params.id;
   if (id.match(/^[0-9a-fA-F]{24}$/)) {
     QuestionModel.findByIdAndDelete({_id : id},(err,data)=>{
@@ -298,8 +298,72 @@ const data = await req.user;
   res.render('profile',{data});
 })
 //---------------------admin side --------
-app.get('/admin',(req,res)=>{
-  res.render('admin');
+app.get('/admin-question',(req,res)=>{
+  QuestionModel.find({},(err,data)=>{
+    if(err){res.send(err);}
+    else{
+      
+  res.render('admin-question',{data});
+   }
+    })
+})
+app.get('/admin-answer',(req,res)=>{
+  AnswerModel.find({},(err,data)=>{
+    if(err){res.send(err);}
+    else{
+  res.render('admin-answer',{data});
+   } })
+})
+app.get('/admin-feedback',(req,res)=>{
+  FeedbackModel.find({},(err,data)=>{
+    if(err){res.send(err);}
+    else{
+  res.render('feedback',{data});
+   } })
+})
+//--------------------------admin deleting---
+app.post("/delete-question/id",(req,res)=>{
+ var id = req.params.id;
+  if (id.match(/^[0-9a-fA-F]{24}$/)) {
+    QuestionModel.findByIdAndDelete({_id : id},(err,data)=>{
+      if (err)
+        {res.send(err);}
+      else{
+        res.redirect("/admin-question");
+      }
+    })
+
+  }
+  else{console.log("id is not valid");}
+})
+app.post("/delete-answer/id",(req,res)=>{
+ var id = req.params.id;
+  if (id.match(/^[0-9a-fA-F]{24}$/)) {
+    AnswerModel.findByIdAndDelete({_id : id},(err,data)=>{
+      if (err)
+        {res.send(err);}
+      else{
+        res.redirect("/admin-answer");
+      }
+    })
+
+  }
+  else{console.log("id is not valid");}
+})
+
+app.post("/delete-question/id",(req,res)=>{
+ var id = req.params.id;
+  if (id.match(/^[0-9a-fA-F]{24}$/)) {
+    FeedbackModel.findByIdAndDelete({_id : id},(err,data)=>{
+      if (err)
+        {res.send(err);}
+      else{
+        res.redirect("/admin-feedback");
+      }
+    })
+
+  }
+  else{console.log("id is not valid");}
 })
 
 //------------------------------------------testing routes

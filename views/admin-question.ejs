@@ -1,0 +1,162 @@
+ <!doctype html>
+ <!-- 
+#b2d237 yellow green
+#333333 Black
+#595959 faded black
+    font-family: proxima_novalight;
+    color: #2f2f35;
+    https://www.spinxdigital.com/ ideas
+-->
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>ASK & SOLVE</title>
+      <style type="text/css">
+html {
+  scroll-behavior: smooth;
+}
+
+ul {
+  list-style-type: none;
+}
+
+  #link{
+  color:white;
+  }
+  #link:hover{
+  color: #b2d237;
+  background-color: #595959;
+  transition: 1s;
+  }
+.loader {
+position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 16px solid #595959;
+  border-radius: 50%;
+  border-top: 16px solid #b2d237;
+  border-bottom: 16px solid #b2d237;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+    </style>
+  <script>
+  function loader(){
+  document.getElementById("main").style.display = "block";
+   document.getElementById("load").style.display = "none";
+  }
+  </script>
+  </head>
+
+  <body onload="loader()">
+  <div id="load" style="position:fixed;background-color:#333333;width:100%;height:100%">
+ <div class="loader"></div>
+</div>
+  </div>
+
+  
+  <div id="main" style="display:none;">
+  <div class="container-fluid" style="background-color: #333333;">
+   <nav class="sticky-top" style="background-color: #333333;"> 
+    <div class="container">
+    <ul class="nav justify-content-center ">
+    <li class="nav-item">
+    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/admin-question" id="link" >View Questions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/admin-answer" id="link" >View answers</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/admin-feedback" id="link">Feedback</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/profile" id="link">My Profile</a>
+  </li>
+    </li>
+   <li class="nav-item">
+    <form action="/logout?_method=DELETE" method="POST"><button class="nav-link" id="link" style="font-size:20px;  font-style: oblique;background: transparent;border: 0;">Logout</button></form>
+  </li>
+</ul>
+</div>
+   </nav>
+
+<div class="modal fade" id="post" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content" >
+      <div class="modal-header" style="background-color: #333333;">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Post Your Question</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="background-color: #333333;">
+      <form action="/AddQuestion" method="POST">
+        
+        <input type="text" class="form-control" placeholder="Title" style="background-color: #333333;color:#b2d237" name="title" Required>
+        <br>
+        <input type="text" class="form-control" name="description" placeholder="Description" style="background-color: #333333;color:#b2d237"  Required>
+        <br>
+        <textarea class="form-control" name="problem" rows="10" style="background-color: #333333; color: #b2d237" placeholder="Problem" Required></textarea>
+        
+      </div>
+      <div class="modal-footer" style="background-color: #333333;">
+        <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #b2d237;color: #333333"> Close </button>
+        <input type="submit" class ="btn"  style="background-color: #b2d237 ;color: #333333" value=" Post ">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<br>
+<div class="container">
+<h3><i style="color:#333333">Welcome ADMIN</i></h3>
+<br>
+<h5><i style="color:#333333">Everything Under Control</i></h5>
+<% for(var i=0;i<data.length;i++) { %>
+<div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
+  <div class="card-body">
+    <h5 class="card-title"><%=data[i].title%></h5>
+  
+    <h6 class="card-subtitle mb-2" style="color:#b2d237;"><%=data[i].description%></h6>
+    <br>
+    <h6 class="card-subtitle mb-2" style="color:#b2d237;"><%=data[i].userid%></h6>
+    <br>
+    <p class="card-text"><%=data[i].problem%></p>
+  </div>
+   <div class="card-footer text-end" style="border-top: 1px solid white">
+    <form method="GET" action="/answer/<%=data[i]._id%>"><input type="submit" class="btn" style="background-color: #b2d237;" value="VIEW" ></form>
+    <form method="POST" action="/delete-question/<%=data[i]._id%>"><input type="submit" class="btn" style="background-color: #b2d237; float:left;" value="DELETE" ></form>
+  </div>
+  </div>
+  <br>
+  <% } %>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

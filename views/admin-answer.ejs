@@ -81,10 +81,13 @@ position: absolute;
     <div class="container">
     <ul class="nav justify-content-center ">
     <li class="nav-item">
-    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/admin" id="link" >View Questions</a>
+    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/admin-question" id="link" >View Questions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/admin-answer" id="link" >View answers</a>
   </li>
    <li class="nav-item">
-    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/feedback" id="link">Feedback</a>
+    <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/admin-feedback" id="link">Feedback</a>
   </li>
    <li class="nav-item">
     <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/profile" id="link">My Profile</a>
@@ -128,19 +131,23 @@ position: absolute;
 <h3><i style="color:#333333">Welcome ADMIN</i></h3>
 <br>
 <h5><i style="color:#333333">Everything Under Control</i></h5>
+<% for(var i=0;i<data.length;i++) { %>
 <div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
   <div class="card-body">
-    <h5 class="card-title"></h5>
+    <h5 class="card-title"><%=data[i].description%></h5>
   
-    <h6 class="card-subtitle mb-2" style="color:#b2d237;"></h6>
+    <h6 class="card-subtitle mb-2" style="color:#b2d237;">User id = <%=data[i].userid%></h6>
     <br>
-    <p class="card-text"></p>
+    <h6 class="card-subtitle mb-2" style="color:#b2d237;">Question id = <%=data[i].questionid%></h6>
+    <br>
+    <p class="card-text"><%=data[i].solution%></p>
   </div>
    <div class="card-footer text-end" style="border-top: 1px solid white">
-    <form method="GET" action="/answer/"><input type="submit" class="btn" style="background-color: #b2d237;" value="VIEW" ></form>
+    <form method="GET" action="/delete-answer/<%=data[i]._id%>"><input type="submit" class="btn" style="background-color: #b2d237;" value="Delete" ></form>
   </div>
   </div>
   <br>
+  <% } %>
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
