@@ -322,7 +322,7 @@ app.get('/admin-feedback',(req,res)=>{
    } })
 })
 //--------------------------admin deleting---
-app.post("/delete-question/id",(req,res)=>{
+app.post("/delete-question/:id",(req,res)=>{
  var id = req.params.id;
   if (id.match(/^[0-9a-fA-F]{24}$/)) {
     QuestionModel.findByIdAndDelete({_id : id},(err,data)=>{
@@ -336,7 +336,7 @@ app.post("/delete-question/id",(req,res)=>{
   }
   else{console.log("id is not valid");}
 })
-app.post("/delete-answer/id",(req,res)=>{
+app.post("/delete-answer/:id",(req,res)=>{
  var id = req.params.id;
   if (id.match(/^[0-9a-fA-F]{24}$/)) {
     AnswerModel.findByIdAndDelete({_id : id},(err,data)=>{
@@ -351,7 +351,7 @@ app.post("/delete-answer/id",(req,res)=>{
   else{console.log("id is not valid");}
 })
 
-app.post("/delete-question/id",(req,res)=>{
+app.post("/delete-feedback/:id",(req,res)=>{
  var id = req.params.id;
   if (id.match(/^[0-9a-fA-F]{24}$/)) {
     FeedbackModel.findByIdAndDelete({_id : id},(err,data)=>{

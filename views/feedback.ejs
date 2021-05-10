@@ -141,7 +141,7 @@ position: absolute;
     <p class="card-text"><%=data[i].message%></p>
   </div>
    <div class="card-footer text-end" style="border-top: 1px solid white">
-    <form method="GET" action="/delete-feedback/<%=data[i]._id%>"><input type="submit" class="btn" style="background-color: #b2d237;" value="Delete" ></form>
+    <form method="POST" action="/delete-feedback/<%=data[i]._id%>"><input type="submit" class="btn" style="background-color: #b2d237;" value="Delete" ></form>
   </div>
   </div>
   <br>
