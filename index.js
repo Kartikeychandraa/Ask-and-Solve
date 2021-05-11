@@ -321,7 +321,28 @@ app.get('/admin-feedback',(req,res)=>{
   res.render('feedback',{data});
    } })
 })
+app.get('/admin-user',(req,res)=>{
+  UserModel.find({},(err,data)=>{
+    if(err){res.send(err);}
+    else{
+  res.render('admin-user',{data});
+   } })
+})
 //--------------------------admin deleting---
+app.post("/delete-user/:id",(req,res)=>{
+ var id = req.params.id;
+  if (id.match(/^[0-9a-fA-F]{24}$/)) {
+    UserModel.findByIdAndDelete({_id : id},(err,data)=>{
+      if (err)
+        {res.send(err);}
+      else{
+        res.redirect("/admin-user");
+      }
+    })
+
+  }
+  else{console.log("id is not valid");}
+})
 app.post("/delete-question/:id",(req,res)=>{
  var id = req.params.id;
   if (id.match(/^[0-9a-fA-F]{24}$/)) {

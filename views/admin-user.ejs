@@ -86,7 +86,7 @@ position: absolute;
   <li class="nav-item">
     <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/admin-answer" id="link" >View answers</a>
   </li>
-  <li class="nav-item">
+    <li class="nav-item">
     <a class="nav-link " style="font-size:20px;  font-style: oblique;" href="/admin-user" id="link">Users</a>
   </li>
    <li class="nav-item">
@@ -137,16 +137,14 @@ position: absolute;
 <% for(var i=0;i<data.length;i++) { %>
 <div class="card" style="width: 50rem;margin: auto;background-color:#333333;color:#b2d237">
   <div class="card-body">
-    <h5 class="card-title"><%=data[i].description%></h5>
+    <h5 class="card-title"><%=data[i].name%></h5>
   
-    <h6 class="card-subtitle mb-2" style="color:#b2d237;">User id = <%=data[i].userid%></h6>
+    <h6 class="card-subtitle mb-2" style="color:#b2d237;">User id = <%=data[i].email%></h6>
     <br>
-    <h6 class="card-subtitle mb-2" style="color:#b2d237;">Question id = <%=data[i].questionid%></h6>
-    <br>
-    <p class="card-text"><%=data[i].solution%></p>
+    <p class="card-text"><%=data[i].password%></p>
   </div>
    <div class="card-footer text-end" style="border-top: 1px solid white">
-    <form method="POST" action="/delete-answer/<%=data[i]._id%>"><input type="submit" class="btn" style="background-color: #b2d237;" value="Delete" ></form>
+    <form method="POST" action="/delete-user/<%=data[i]._id%>"><input type="submit" class="btn" style="background-color: #b2d237;" value="Delete" ></form>
   </div>
   </div>
   <br>
